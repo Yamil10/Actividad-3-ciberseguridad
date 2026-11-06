@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DevSecOps Lab</title>
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero">
+        <div>
+          <span class="eyebrow">ACTIVIDAD DEVSECOPS</span>
+          <h1>Seguridad desde el código hasta el despliegue.</h1>
+          <p>Demostración local de una API protegida con JWT, contenedores y controles de seguridad.</p>
+        </div>
+        <div class="status-card">
+          <span class="status-dot"></span>
+          <div><strong id="health-label">Comprobando API</strong><small>Servicio local · puerto 3000</small></div>
+        </div>
+      </section>
+
+      <section class="grid">
+        <article class="card">
+          <div class="card-icon">01</div>
+          <h2>Autenticación</h2>
+          <p>Solicita un token JWT para entrar al área administrativa.</p>
+          <form id="login-form">
+            <label for="user">Usuario</label>
+            <input id="user" name="user" value="alumno" required>
+            <button type="submit">Generar token <span>→</span></button>
+          </form>
+          <p id="login-message" class="message"></p>
+        </article>
+
+        <article class="card protected">
+          <div class="card-icon">02</div>
+          <h2>Área protegida</h2>
+          <p>Este contenido solo aparece cuando el JWT es válido.</p>
+          <div id="admin-result" class="result muted">Inicia sesión para continuar.</div>
+          <button id="admin-button" class="secondary" disabled>Probar acceso protegido</button>
+        </article>
+      </section>
+
+      <section class="stack">
+        <div><span class="check">✓</span><strong>JWT</strong><small>Autenticación con expiración de 1 hora</small></div>
+        <div><span class="check">✓</span><strong>Docker</strong><small>Imagen basada en Node.js 20 Alpine</small></div>
+        <div><span class="check">✓</span><strong>Terraform</strong><small>S3 cifrado y acceso público bloqueado</small></div>
+      </section>
+
+      <footer>Laboratorio local · DevSecOps · Fedora Asahi Remix</footer>
+    </main>
+    <script src="/app.js"></script>
+  </body>
+</html>
