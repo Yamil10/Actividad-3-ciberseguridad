@@ -10,6 +10,10 @@ if (!secretKey) {
   throw new Error('JWT_SECRET must be configured');
 }
 
+app.get('/health', (_req, res) => {
+  res.json({ status: 'ok' });
+});
+
 app.post('/api/login', (req, res) => {
   const { user } = req.body;
   if (!user || typeof user !== 'string') {
@@ -42,12 +46,17 @@ function authenticateToken(req, res, next) {
 }
 
 app.get('/api/admin', authenticateToken, (req, res) => {
-  res.json({
+  return res.json({
     message: 'Bienvenido al área administrativa protegida',
     user: req.user,
   });
 });
 
-app.listen(3000, () => {
-  console.log('API corriendo en http://localhost:3000');
-});
+if (require.main === module) {
+  const port = Number(process.env.PORT) || 3000;
+  app.listen(port, () => {
+    console.log(`API corriendo en http://localhost:${port}`);
+  });
+}
+
+module.exports = { app };
